@@ -103,3 +103,4 @@ menjadi:
 <script src="tugas.js"></script>
 
 Itu tetap memenuhi permintaan lu 3 file, sekaligus lebih dekat dengan format tugas asli.
+
