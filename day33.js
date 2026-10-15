@@ -133,3 +133,62 @@ for (let huruf of "Kopi") {
    - `for...in` dirancang untuk mengiterasi **kunci (keys/indeks)** dari sebuah object atau array, bukan nilai di dalamnya. Pada array, indeksnya adalah `"0"` dan `"1"`.
    - `for...of` menghasilkan error karena object biasa di JavaScript tidak memiliki sifat *iterable* (tidak bisa diiterasi langsung secara sekuensial seperti array atau string).
 */
+
+// langkah 2: perbaiki 7 kesalahan
+
+const warung = {
+    nama: "Warung Senja",
+    saldoKas: 100000,
+    
+    tambahKas(jumlah) {
+        this.saldoKas += jumlah;
+    },
+
+    ambilKas(jumlah) {
+        this.saldoKas -= jumlah;
+        return this.saldoKas;
+    },
+};
+
+warung.tambahKas(50000);
+console.assert;ongamepadconnected(warung.saldoKas);
+console.log(warung.ambilKas(30000));
+
+const kontak = { "no-wa": "08123"};
+console.log(kontak["no-wa"]);
+
+const akun = {nama: "Rina", kataSandi: "abc123" };
+delete akun.kataSandi;
+console.log(akun);
+
+const menu = ["kopi", "teh", "roti"];
+for (let item of menu) {
+    console.log(item);
+}
+
+const info = { nama: "Warung Senja", kota: "yogyakarta" };
+for (let kolom of info) {
+    console.log(kolom + ": " + info[kolom]);
+}
+
+console.log(Object.keys(info));
+
+/*
+--- JAWABAN PERTANYAAN LANGKAH 2 ---
+1. Tulis ke-7 kesalahan tadi dalam satu kalimat singkat masing-masing:
+   - Kesalahan 1: Kurang `this.` pada `saldoKas += jumlah`, diperbaiki dengan menambah `this.saldoKas`.
+   - Kesalahan 2: Method `ambilKas` tidak mengembalikan nilai, diperbaiki dengan menambahkan `return this.saldoKas`.
+   - Kesalahan 3: Mengakses key berkarakter `-` dengan dot notation, diperbaiki memakai bracket notation `kontak["no-wa"]`.
+   - Kesalahan 4: Menghapus properti dengan mengisi `undefined`, diperbaiki menggunakan operator `delete`.
+   - Kesalahan 5: Memakai `for...in` untuk array, diperbaiki memakai `for...of`.
+   - Kesalahan 6: Memakai `for...of` untuk object, diperbaiki memakai `for...in`.
+   - Kesalahan 7: Penulisan method `Object.key` yang keliru, diperbaiki menjadi `Object.keys`.
+2. Mana kesalahan yang menyebabkan error di console, dan mana yang tidak error tetapi hasilnya salah?
+   - Yang menyebabkan error di console: Mengakses properti berkarakter `-` memakai dot notation (`kontak.no-wa`) dan kesalahan nama method `Object.key` (TypeError).
+   - Yang tidak error tetapi hasilnya salah: Kurangnya `this.` (menyebabkan ReferenceError/variabel global), tidak adanya `return` pada method (hasil `undefined`), penggunaan `undefined` alih-alih `delete`, serta tertukarnya penggunaan `for...in` dan `for...of`.
+3. Kenapa akun.kataSandi = undefined tidak sama dengan delete akun.kataSandi? Tunjukkan bedanya memakai in.
+   - `akun.kataSandi = undefined` hanya mengubah nilai propertinya menjadi kosong/undefined, tetapi **propertinya tetap ada** di dalam object.
+   - `delete akun.kataSandi` **menghapus properti tersebut sepenuhnya** dari object.
+   - Pembuktian dengan `in`:
+     `"kataSandi" in akun` akan bernilai `true` jika diberi nilai `undefined`, tetapi bernilai `false` jika propertinya dihapus dengan `delete`.
+*/
